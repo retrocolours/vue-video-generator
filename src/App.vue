@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, watch, ref } from "vue";
+import { defineComponent } from "vue";
 import TypeSelector from "./components/TypeSelector.vue";
 import ActionSelector from "./components/ActionSelector.vue";
 import VideoPlayer from "./components/VideoPlayer.vue";
@@ -26,7 +26,7 @@ export default defineComponent({
 
       selectedTypeId: undefined as string | undefined,
       selectedAction: undefined as string | undefined,
-      videoSrc: ref(""),
+      videoSrc: "",
     };
   },
 
@@ -40,19 +40,16 @@ export default defineComponent({
     },
   },
 
-  watch: {
-    selectedTypeId: "updateVideoSrc",
-    selectedAction: "updateVideoSrc",
-  },
-
   methods: {
     updateType(typeId: string) {
       this.selectedTypeId = typeId;
-      this.selectedAction = undefined;
+      this.selectedAction = undefined; // Reset action when type changes
+      this.updateVideoSrc(); // Update videoSrc when type changes
     },
 
     updateAction(action: string) {
       this.selectedAction = action;
+      this.updateVideoSrc(); // Update videoSrc when action changes
     },
 
     updateVideoSrc() {

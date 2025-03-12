@@ -23,7 +23,7 @@ export default defineComponent({
         videoKey.value = "";
         setTimeout(() => {
           videoKey.value = newSrc;
-        }, 10); // Small delay to allow DOM reset
+        }, 10); // delay to allow DOM reset
       }
     );
 
